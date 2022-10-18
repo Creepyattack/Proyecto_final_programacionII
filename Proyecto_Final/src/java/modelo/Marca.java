@@ -12,65 +12,48 @@ import java.util.HashMap;
  *
  * @author ppbet
  */
-public class Puestos extends Persona{
-    private int idPuestos;
-    private String puesto;
+public class Marca extends Persona{
+    private int idMarca;
+    private String marca;
     private Conexion cn;
-    public Puestos(){
+    public Marca(){
         
     }
-    public Puestos(int idPuestos, String puesto) {
-        this.idPuestos = idPuestos;
-        this.puesto = puesto;
+    public Marca(int idMarca, String marca) {
+        this.idMarca = idMarca;
+        this.marca = marca;
     }
 
-    public int getIdPuestos() {
-        return idPuestos;
+    public int getIdMarca() {
+        return idMarca;
     }
 
-    public void setIdPuestos(int idPuestos) {
-        this.idPuestos = idPuestos;
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
     }
 
-    public String getPuesto() {
-        return puesto;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
     
-    public HashMap drop_puesto(){
-        HashMap<String,String> drop = new HashMap();
-        try{
-            cn = new Conexion();
-            String query="SELECT idPuesto as id,puesto FROM puestos;";
-            cn.abrir_conexion();
-            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
-            while(consulta.next()){
-                drop.put(consulta.getString("id"), consulta.getString("puesto"));
-            }
-            cn.cerrar_conexion();
-            
-        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-        return drop;
-    }
     
     public DefaultTableModel leer(){
         DefaultTableModel tabla = new DefaultTableModel();
         try{
             cn = new Conexion();
             cn.abrir_conexion();
-            String query = "SELECT p.idPuesto as id,puesto FROM puestos as p;";
+            String query = "SELECT m.idMarca as id,marca FROM marcas as m;";
             ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
-            String encabezado[] = {"id","puesto"};
+            String encabezado[] = {"id","marca"};
             tabla.setColumnIdentifiers(encabezado);
             String datos[] = new String[2];
             while(consulta.next()){
                 datos[0] = consulta.getString("id");
-                datos[1] = consulta.getString("puesto");
+                datos[1] = consulta.getString("marca");
                 tabla.addRow(datos);
             }
             cn.cerrar_conexion();
@@ -87,10 +70,10 @@ public class Puestos extends Persona{
         try{
             PreparedStatement parametro;
             cn = new Conexion();
-            String query="INSERT INTO puestos(puesto) VALUES(?);";
+            String query="INSERT INTO marcas(marca) VALUES(?);";
             cn.abrir_conexion();
             parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
-            parametro.setString(1, this.getPuesto());
+            parametro.setString(1, this.getMarca());
             retorno = parametro.executeUpdate();
             cn.cerrar_conexion();
         }catch(SQLException ex){
@@ -106,11 +89,11 @@ public class Puestos extends Persona{
         try{
             PreparedStatement parametro;
             cn = new Conexion();
-            String query="UPDATE puestos SET puesto = ? WHERE idPuesto = ?;";
+            String query="UPDATE marcas SET marca = ? WHERE idMarca = ?;";
             cn.abrir_conexion();
             parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
-            parametro.setString(1, this.getPuesto());
-            parametro.setInt(2, this.getIdPuestos());
+            parametro.setString(1, this.getMarca());
+            parametro.setInt(2, this.getIdMarca());
             retorno = parametro.executeUpdate();
             cn.cerrar_conexion();
         }catch(SQLException ex){
@@ -119,17 +102,17 @@ public class Puestos extends Persona{
         }
          return retorno;
     }
-    
+   
     @Override
-    public int eliminar(){
+     public int eliminar(){
       int retorno = 0;
         try{
             PreparedStatement parametro;
             cn = new Conexion();
-            String query="DELETE FROM puestos WHERE idPuesto=?;";
+            String query="DELETE FROM marcas WHERE idMarca=?;";
             cn.abrir_conexion();
             parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
-            parametro.setInt(1, this.getIdPuestos());
+            parametro.setInt(1, this.getIdMarca());
             retorno = parametro.executeUpdate();
             cn.cerrar_conexion();
         }catch(SQLException ex){
@@ -138,4 +121,5 @@ public class Puestos extends Persona{
         }
          return retorno;
     }
+     
 }

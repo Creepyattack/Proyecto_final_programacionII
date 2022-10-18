@@ -25,6 +25,7 @@
         <input type="text" name="txt_id" id="txt_id" class="form-control" value = "0" readonly>
         <label for="lbl_puesto"><b>Puesto:</b></label>
         <input type="text" name="txt_puesto" id="txt_puesto" class="form-control" placeholder="Ejemplo: Programador" required >
+        <br>
         <button type="button" class="btn btn-primary" onclick="limpiar()">Nuevo</button>
         <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-primary">Agregar</button>
         <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-success">Modificar</button>
@@ -50,7 +51,8 @@
         %>
     
     </tbody>
-  </table>  
+  </table> 
+         <a href="Empleados.jsp">Ir a la tabla de Empleados</a>
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
