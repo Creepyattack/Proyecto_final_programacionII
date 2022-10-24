@@ -22,7 +22,6 @@
         <label for="lbl_marca"><b>Marca:</b></label>
         <input type="text" name="txt_marca" id="txt_marca" class="form-control" placeholder="Ejemplo: Dos Pinos" required >
         <br>
-        <button type="button" class="btn btn-primary" onclick="limpiar()">Nuevo</button>
         <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-primary">Agregar</button>
         <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-success">Modificar</button>
         <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-danger" onclick="javascript:if(!confirm('Desea Eliminar?'))return false">Eliminar</button>

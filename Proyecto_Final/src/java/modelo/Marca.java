@@ -40,6 +40,23 @@ public class Marca extends Persona{
         this.marca = marca;
     }
     
+    public HashMap drop_marca(){
+        HashMap<String,String> drop = new HashMap();
+        try{
+            cn = new Conexion();
+            String query="SELECT idMarca as id,marca FROM marcas;";
+            cn.abrir_conexion();
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            while(consulta.next()){
+                drop.put(consulta.getString("id"), consulta.getString("marca"));
+            }
+            cn.cerrar_conexion();
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return drop;
+    }
     
     public DefaultTableModel leer(){
         DefaultTableModel tabla = new DefaultTableModel();

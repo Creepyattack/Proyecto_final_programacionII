@@ -60,7 +60,6 @@
                 <label for="lbl_fi"><b>Fecha Ingreso:</b></label>
                 <input type="datetime-local" name="txt_fi" id="txt_fi" class="form-control" required >
                 <br>
-                <button type="button" class="btn btn-primary" onclick="limpiar()">Nuevo</button>
                 <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-primary">Agregar</button>
                 <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-success">Modificar</button>
                 <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-danger" onclick="javascript:if(!confirm('Desea Eliminar?'))return false">Eliminar</button>
