@@ -15,7 +15,54 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Tabla Clientes</h1>
+        
+         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+             <!-- Brand -->
+            <a class="navbar-brand" href="Clientes.jsp">Tabla de Clientes</a>
+            <ul class="navbar-nav">
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Productos
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="Productos.jsp">Tabla de Productos</a>
+                  <a class="dropdown-item" href="Marca.jsp">Tabla de Marcas</a>
+                </div>
+              </li>
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Ventas
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="Ventas.jsp">Tabla de Ventas</a>
+                  <a class="dropdown-item" href="Empleados.jsp">Tabla de Empleados</a>
+                  <a class="dropdown-item" href="Puestos.jsp">Tabla de Puestos</a>
+                </div>
+              </li>
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Compras
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="Compras.jsp">Tabla de Compras</a>
+                  <a class="dropdown-item" href="Proveedor.jsp">Tabla de Proveedores</a>
+                </div>
+              </li>
+              
+            </ul>
+          </nav>
+        
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-primary" id="nuevo" data-toggle="modal" data-target="#modal_cliente" onclick="limpiar()">Ingresar un registro</button>
+            </div>
+        <div class="container">
+            <div class="modal" id="modal_cliente">
+    <div class="modal-dialog">
+      <div class="modal-content">
+                <div class="modal-body">
                 <form action="sr_cliente" method="post" class="form-group" >
                 <label for="lbl_id"><b>ID:</b></label>
                 <input type="text" name="txt_id" id="txt_id" class="form-control" value = "0" readonly>
@@ -44,10 +91,16 @@
                 <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-primary">Agregar</button>
                 <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-success">Modificar</button>
                 <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-danger" onclick="javascript:if(!confirm('Desea Eliminar?'))return false">Eliminar</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                 </form>
+           </div>
+      </div>
+    </div>
+  </div>
+ </div>         
                 
-   <table class="table table-striped">
-    <thead>
+   <table class="table">
+    <thead class="thead-light">
       <tr>
         <th>Nombres</th>
         <th>Apellidos</th>
@@ -112,7 +165,12 @@
                $("#txt_telefono").val(telefono);
                $("#txt_correo").val(correo);
                $("#txt_fi").val(fi);
+               $("#modal_cliente").modal('show');
             });
             </script>
+            
+<footer  style="bottom: 0px;width:100%; margin-top: -10px; padding: 50px;position: absolute;clear: both; background: gainsboro; text-align: center; color: black;"  >
+    <p> ©  Copyright: Jose Alberto Najera Mendez</p>
+</footer>
     </body>
 </html>

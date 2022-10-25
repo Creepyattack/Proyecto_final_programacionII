@@ -19,7 +19,54 @@
         </style>
     </head>
     <body>
-        <h1>Tabla de Productos</h1>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+             <!-- Brand -->
+            <a class="navbar-brand" href="Productos.jsp">Tabla de Productos</a>
+            <ul class="navbar-nav">
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Productos
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="Marca.jsp">Tabla de Marcas</a>
+                </div>
+              </li>
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Ventas
+                </a>
+                <div class="dropdown-menu">
+                   <a class="dropdown-item" href="Ventas.jsp">Tabla de Ventas</a>
+                  <a class="dropdown-item" href="Clientes.jsp">Tabla de Clientes</a>
+                  <a class="dropdown-item" href="Empleados.jsp">Tabla de Empleados</a>
+                  <a class="dropdown-item" href="Puestos.jsp">Tabla de Puestos</a>
+                </div>
+              </li>
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Compras
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="Compras.jsp">Tabla de Compras</a>
+                  <a class="dropdown-item" href="Proveedor.jsp">Tabla de Proveedores</a>
+                </div>
+              </li>
+              
+            </ul>
+          </nav>
+        
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-primary" id="nuevo" data-toggle="modal" data-target="#modal_producto" onclick="limpiar()">Ingresar un registro</button>
+            </div>
+        <div class="container">
+            <div class="modal" id="modal_producto">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+             <div class="modal-body">
                 <form action="sr_productos" method="post" class="form-group">
                 <label for="lbl_id"><b>ID:</b></label>
                 <input type="text" name="txt_id" id="txt_id" class="form-control" value = "0" readonly>
@@ -45,7 +92,7 @@
                 <img src="" id="imagen" style="width: 250px; height: 300px; border: dashed blueviolet">
                 <input type="file" onchange="mostrarimagen();">
                 <div id="url">
-                  <input type="text" name="txt_imagen" id="txt_imagen" class="form-control">
+                  <input type="text" name="txt_imagen" id="txt_imagen" class="form-control" value="">
                 </div>
                 <br>
                 <label for="lbl_preciocosto"><b>Precio costo:</b></label>
@@ -64,9 +111,14 @@
                 <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-success">Modificar</button>
                 <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-danger" onclick="javascript:if(!confirm('Desea Eliminar?'))return false">Eliminar</button>
                 </form>
+       </div>
+      </div>
+    </div>
+  </div>
+ </div>          
                 
-    <table class="table table-striped">
-    <thead>
+    <table class="table">
+    <thead class="thead-light">
       <tr>
         <th>Producto</th>
         <th>Marca</th>
@@ -88,7 +140,7 @@
             out.println("<td>" + tabla.getValueAt(t,1) + "</td>");
             out.println("<td>" + tabla.getValueAt(t,2) + "</td>");
             out.println("<td>" + tabla.getValueAt(t,4) + "</td>");
-            out.println("<td><img src=" + tabla.getValueAt(t,5) + "style='width: 250px; height: 300px;'></td>");
+            out.println("<td><img src='" + tabla.getValueAt(t,5) + "'style='width: 200px; height: 200px;'></td>");
             out.println("<td>" + tabla.getValueAt(t,6) + "</td>");
             out.println("<td>" + tabla.getValueAt(t,7) + "</td>");
             out.println("<td>" + tabla.getValueAt(t,8) + "</td>");
@@ -146,8 +198,13 @@
                $("#txt_precioventa").val(venta);
                $("#txt_existencia").val(existencia);
                $("#txt_fi").val(ingreso);
+               $("#modal_producto").modal('show');
             });
             
         </script>
+<footer  style="bottom: 0px;width:100%; margin-top: -10px; padding: 50px;position: absolute;clear: both; background: gainsboro; text-align: center; color: black;"  >
+
+    <p> ©  Copyright: Jose Alberto Najera Mendez</p>
+</footer>        
     </body>
 </html>
