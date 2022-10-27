@@ -6,6 +6,7 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -84,6 +85,56 @@ public class Ventas extends Persona{
 
     public void setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+    
+    
+    public DefaultTableModel leer(){
+        DefaultTableModel tabla = new DefaultTableModel();
+        
+        try{
+            cn = new Conexion();
+            cn.abrir_conexion();
+            String query = "SELECT v.idVenta as id,v.nofactura,v.serie,v.facturafecha,c.idCliente,c.nombres,e.idEmpleado,e.nombres,v.fechaingreso FROM ventas as v inner join clientes as c on v.idCliente = c.idCliente inner join empleados as e on v.idEmpleado = e.idEmpleado;";
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            String encabezado[] = {"id","nofactura","serie","facturafecha","idCliente","nombres","idEmpleado","nombres","fechaingreso"};
+            tabla.setColumnIdentifiers(encabezado);
+            String datos[] = new String[9];
+            while(consulta.next()){
+                datos[0] = consulta.getString("id");
+                datos[1] = consulta.getString("nofactura");
+                datos[2] = consulta.getString("serie");
+                datos[3] = consulta.getString("facturafecha");
+                datos[4] = consulta.getString("idCliente");
+                datos[5] = consulta.getString("nombres");
+                datos[6] = consulta.getString("idEmpleado");
+                datos[7] = consulta.getString("nombres");
+                datos[8] = consulta.getString("fechaingreso");
+                tabla.addRow(datos);
+            }
+            cn.cerrar_conexion();
+        }catch(SQLException ex){
+           System.out.println(ex.getMessage());
+        }
+        
+        return tabla;
+    }
+    
+    public HashMap drop_venta(){
+        HashMap<String,String> drop = new HashMap();
+        try{
+            cn = new Conexion();
+            String query="SELECT idVenta as id,nofactura FROM ventas;";
+            cn.abrir_conexion();
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            while(consulta.next()){
+                drop.put(consulta.getString("id"), consulta.getString("nofactura"));
+            }
+            cn.cerrar_conexion();
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return drop;
     }
     
     

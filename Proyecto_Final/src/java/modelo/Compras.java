@@ -6,6 +6,7 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -65,6 +66,52 @@ public class Compras extends Persona{
 
     public void setFechaingreso(String fechaingreso) {
         this.fechaingreso = fechaingreso;
+    }
+    
+    public DefaultTableModel leer(){
+        DefaultTableModel tabla = new DefaultTableModel();
+        
+        try{
+            cn = new Conexion();
+            cn.abrir_conexion();
+            String query = "SELECT c.idCompra as id,c.no_orden_compra,p.idProveedor,p.proveedor,c.fecha_orden,c.fechaingreso FROM compras as c inner join proveedores as p on c.idProveedor = p.idProveedor;";
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            String encabezado[] = {"id","no_orden_compra","idProveedor","proveedor","fecha_orden","fechaingreso"};
+            tabla.setColumnIdentifiers(encabezado);
+            String datos[] = new String[6];
+            while(consulta.next()){
+                datos[0] = consulta.getString("id");
+                datos[1] = consulta.getString("no_orden_compra");
+                datos[2] = consulta.getString("idProveedor");
+                datos[3] = consulta.getString("proveedor");
+                datos[4] = consulta.getString("fecha_orden");
+                datos[5] = consulta.getString("fechaingreso");
+                tabla.addRow(datos);
+            }
+            cn.cerrar_conexion();
+        }catch(SQLException ex){
+           System.out.println(ex.getMessage());
+        }
+        
+        return tabla;
+    }
+    
+    public HashMap drop_compra(){
+        HashMap<String,String> drop = new HashMap();
+        try{
+            cn = new Conexion();
+            String query="SELECT idCompra as id,no_orden_compra FROM compras;";
+            cn.abrir_conexion();
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            while(consulta.next()){
+                drop.put(consulta.getString("id"), consulta.getString("no_orden_compra"));
+            }
+            cn.cerrar_conexion();
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return drop;
     }
     
     @Override

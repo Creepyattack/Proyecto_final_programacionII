@@ -6,6 +6,7 @@ package modelo;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -70,7 +71,24 @@ public class Proveedor extends Persona{
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
+    
+    public HashMap drop_proveedor(){
+        HashMap<String,String> drop = new HashMap();
+        try{
+            cn = new Conexion();
+            String query="SELECT idProveedor as id,proveedor FROM proveedores;";
+            cn.abrir_conexion();
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            while(consulta.next()){
+                drop.put(consulta.getString("id"), consulta.getString("proveedor"));
+            }
+            cn.cerrar_conexion();
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return drop;
+    }
     
     public DefaultTableModel leer(){
         DefaultTableModel tabla = new DefaultTableModel();

@@ -6,6 +6,7 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -93,6 +94,24 @@ public class Clientes extends Persona{
 
     public void setFechaingreso(String fechaingreso) {
         this.fechaingreso = fechaingreso;
+    }
+    
+    public HashMap drop_cliente(){
+        HashMap<String,String> drop = new HashMap();
+        try{
+            cn = new Conexion();
+            String query="SELECT idCliente as id,nombres FROM clientes;";
+            cn.abrir_conexion();
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            while(consulta.next()){
+                drop.put(consulta.getString("id"), consulta.getString("nombres"));
+            }
+            cn.cerrar_conexion();
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return drop;
     }
     
     public DefaultTableModel leer(){

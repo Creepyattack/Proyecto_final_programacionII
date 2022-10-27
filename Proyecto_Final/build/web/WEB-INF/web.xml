@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>sr_index</servlet-name>
-        <servlet-class>controlador.sr_index</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>sr_puesto</servlet-name>
         <servlet-class>controlador.sr_puesto</servlet-class>
     </servlet>
@@ -28,10 +24,14 @@
         <servlet-name>sr_productos</servlet-name>
         <servlet-class>controlador.sr_productos</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>sr_index</servlet-name>
-        <url-pattern>/sr_index</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>sr_ventas</servlet-name>
+        <servlet-class>controlador.sr_ventas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sr_compra</servlet-name>
+        <servlet-class>controlador.sr_compra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>sr_puesto</servlet-name>
         <url-pattern>/sr_puesto</url-pattern>
@@ -55,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>sr_productos</servlet-name>
         <url-pattern>/sr_productos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sr_ventas</servlet-name>
+        <url-pattern>/sr_ventas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sr_compra</servlet-name>
+        <url-pattern>/sr_compra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
